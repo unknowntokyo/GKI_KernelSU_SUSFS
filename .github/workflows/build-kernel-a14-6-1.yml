@@ -5,8 +5,6 @@ permissions:
   actions: write
   
 on:
-  schedule:
-    - cron: '0 0,12 * * *'  # 每天8:00、20:00执行(GMT+8)
   workflow_dispatch:
     inputs:
       kernelsu_variant:
