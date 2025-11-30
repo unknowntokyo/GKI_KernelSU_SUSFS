@@ -439,6 +439,8 @@ jobs:
           else
               echo "文件不存在: fs/f2fs/Makefile"
           fi
+          # 设置LZ4为默认ZRAM算法
+          echo "CONFIG_ZRAM_DEFAULT_COMPRESS=lz4" >> ./common/arch/arm64/configs/gki_defconfig
           
       - name: 复制源文件 & 应用LZ4KD & ZSTDN补丁
         if: ${{ inputs.more_zram_kpm }}
