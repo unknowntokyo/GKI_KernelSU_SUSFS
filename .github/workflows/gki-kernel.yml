@@ -590,7 +590,7 @@ jobs:
           echo "CONFIG_TMPFS_POSIX_ACL=y" >> ./common/arch/arm64/configs/gki_defconfig
 
           # HymoFS补丁
-          patch -p1 -F 3 < hymo_patch/patch/hymofs.patch
+          patch -p1 -F 3 < ../hymo_patch/patch/hymofs.patch
           echo "CONFIG_HYMOFS=y" >> ./common/arch/arm64/configs/gki_defconfig
 
           # Add additional config setting
