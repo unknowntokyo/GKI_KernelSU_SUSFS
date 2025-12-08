@@ -437,7 +437,7 @@ jobs:
         run: |
 
           echo "更改为配置目录: $CONFIG..."
-          cd "$CONFIG/common"
+          cd "$CONFIG"
           echo '添加三星SSG IO调度器'
           # 删除旧有文件
           files=(
