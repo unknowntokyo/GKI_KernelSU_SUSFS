@@ -66,7 +66,7 @@ jobs:
         include:
           - sub_level: "118"
             os_patch_level: "2025-01"
-    uses: ./.github/workflows/gki-kernel.yml
+    uses: ./.github/workflows/gki-kernelt1.yml
     secrets: inherit
     with:
       make_release: ${{ inputs.make_release || false }}
