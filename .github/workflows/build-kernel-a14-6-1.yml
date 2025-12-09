@@ -47,22 +47,22 @@ on:
         type: boolean
         default: true
       set_defbbr:
-        description: "将BBR设为默认拥塞算法"
+        description: "TCP拥塞算法:BBR"
         required: true
         type: boolean
         default: true
       rekernel_enable:
-        description: "添加Re:Kernel支持"
+        description: "Re:Kernel支持"
         required: true
         type: boolean
         default: true
       use_O3:
-        description: "开启O3编译优化"
+        description: "O3编译优化"
         required: true
         type: boolean
         default: true
       more_zram_kpm:
-        description: "启用更多ZRAM算法 && KPM功能"
+        description: "更多ZRAM算法 && KPM功能"
         required: false
         type: boolean
         default: false
