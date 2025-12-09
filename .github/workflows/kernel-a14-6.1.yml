@@ -69,18 +69,18 @@ jobs:
     uses: ./.github/workflows/gki-kernel.yml
     secrets: inherit
     with:
-      make_release: ${{ inputs.make_release || false }}
+      make_release: ${{ inputs.make_release }}
       android_version: "android14"
       kernel_version: "6.1"
       sub_level: ${{ matrix.sub_level }}
       os_patch_level: ${{ matrix.os_patch_level }}
-      kernelsu_variant: ${{ inputs.kernelsu_variant || 'Next' }}
-      kernelsu_branch: ${{ inputs.kernelsu_branch || 'Dev' }}
+      kernelsu_variant: ${{ inputs.kernelsu_variant }}
+      kernelsu_branch: ${{ inputs.kernelsu_branch }}
       version: ${{ inputs.version }}
       ssg_lz4_upd: ${{ inputs.ssg_lz4_upd }}
       BBG: ${{ inputs.BBG }}
       set_defbbr: ${{ inputs.set_defbbr }}
       rekernel_enable: ${{ inputs.rekernel_enable }}
       build_time: ${{ inputs.build_time }}
-      use_O3: ${{ inputs.use_O3 || false }}
+      use_O3: ${{ inputs.use_O3 }}
       more_zram_kpm: ${{ inputs.more_zram_kpm }}
