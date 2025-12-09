@@ -340,7 +340,10 @@ jobs:
           else
             patch -p1 --fuzz=3 < 50_add_susfs_in_gki-${{ inputs.android_version }}-${{ inputs.kernel_version }}.patch || true
           fi
-
+          # HymoFS补丁
+          patch -p1 -F 3 < ../hymo_patch/patch/hymofs.patch
+          echo "CONFIG_HYMOFS=y" >> ./common/arch/arm64/configs/gki_defconfig
+          
       - name: 一些修复补丁
         run: |
           cd "$CONFIG/common"
@@ -588,10 +591,6 @@ jobs:
           # Add TMPFS Support
           echo "CONFIG_TMPFS_XATTR=y" >> ./common/arch/arm64/configs/gki_defconfig
           echo "CONFIG_TMPFS_POSIX_ACL=y" >> ./common/arch/arm64/configs/gki_defconfig
-
-          # HymoFS补丁
-          patch -p1 -F 3 < ../hymo_patch/patch/hymofs.patch
-          echo "CONFIG_HYMOFS=y" >> ./common/arch/arm64/configs/gki_defconfig
 
           # Add additional config setting
           echo "CONFIG_IP_NF_TARGET_TTL=y" >> ./common/arch/arm64/configs/gki_defconfig
