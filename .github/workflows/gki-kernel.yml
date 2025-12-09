@@ -389,13 +389,13 @@ jobs:
             echo "Applying hooks for SukiSU..."
           fi
           
-      - name: 添加三星SSG IO调度器 && 升级LZ4算法至1.10.0
+      - name: 添加三星SSG I/O调度器 && 升级LZ4算法至1.10.0
         if: ${{ inputs.ssg_lz4_upd }}
         run: |
 
           echo "更改为配置目录: $CONFIG..."
           cd "$CONFIG/common"
-          echo '添加三星SSG IO调度器 && LZ4算法升级'
+          echo '添加三星SSG I/O调度器 && LZ4算法升级'
           # 删除旧有文件
           files=(
               "block/Kconfig.iosched"
