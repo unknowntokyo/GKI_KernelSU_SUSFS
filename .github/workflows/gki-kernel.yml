@@ -425,7 +425,6 @@ jobs:
           cp -r ../../zzh_patch/zram/lz4/* ./lib/lz4/
           cp -r ../../zzh_patch/zram/include/linux/* ./include/linux/
           cp -r ../../zzh_patch/zram/${{ inputs.kernel_version }}/lz4_1.10.0.patch ./
-          patch -p1 -F 3 --fuzz=5 < lz4_1.10.0.patch || true
           cp -r ../../ssg_patch/SSG/Kconfig.iosched ./block/
           cp -r ../../ssg_patch/SSG/Makefile‎ ./block/
           cp -r ../../ssg_patch/SSG/elevator.c ./block/
@@ -434,6 +433,7 @@ jobs:
           cp -r ../../ssg_patch/SSG/ssg-iosched.c ./block/
           cp -r ../../ssg_patch/SSG/ssg-stat.c ./block/
           cp -r ../../ssg_patch/SSG/ssg.h ./block/
+          patch -p1 -F 3 --fuzz=5 < lz4_1.10.0.patch || true
 
           # 检查文件是否存在
           if [ -f "fs/f2fs/Makefile" ]; then
