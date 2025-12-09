@@ -410,7 +410,6 @@ jobs:
               "block/Kconfig.iosched"
               "block/Makefile"
               "block/elevator.c"
-              "block/blk-sec.h"
           )
 
           for file in "${files[@]}"; do
