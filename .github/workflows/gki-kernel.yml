@@ -396,7 +396,8 @@ jobs:
         run: |
 
           echo "更改为配置目录: $CONFIG..."
-          cd "$CONFIG/common"
+          cd "$CONFIG/common/block"
+          ls
           echo 'LZ4算法升级'
           # 删除LZ4库旧有文件
           files=(
