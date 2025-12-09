@@ -33,7 +33,7 @@ on:
         type: boolean
         default: true
       set_defbbr:
-        description: '将BBR设为默认拥塞算法'
+        description: 'TCP拥塞算法:BBR'
         required: true
         type: boolean
         default: true
