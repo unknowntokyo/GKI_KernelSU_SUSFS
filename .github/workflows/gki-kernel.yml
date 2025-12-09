@@ -341,9 +341,9 @@ jobs:
             patch -p1 --fuzz=3 < 50_add_susfs_in_gki-${{ inputs.android_version }}-${{ inputs.kernel_version }}.patch || true
           fi
           # HymoFS补丁
-          # wget https://raw.githubusercontent.com/Anatdx/hymo/refs/heads/master/patch/hymofs.patch
-          # patch -p1 -F 3 < hymofs.patch
-          # echo "CONFIG_HYMOFS=y" >> ./arch/arm64/configs/gki_defconfig
+          wget https://raw.githubusercontent.com/Anatdx/hymo/refs/heads/master/patch/hymofs.patch
+          patch -p1 -F 3 < hymofs.patch
+          echo "CONFIG_HYMOFS=y" >> ./arch/arm64/configs/gki_defconfig
           
       - name: 一些修复补丁
         run: |
@@ -393,23 +393,22 @@ jobs:
             echo "Applying hooks for SukiSU..."
           fi
           
-      - name: 升级LZ4算法至1.10.0 && 添加三星SSG IO调度器
+      - name: 添加三星SSG IO调度器 && 升级LZ4算法至1.10.0
         if: ${{ inputs.lz4_upd }}
         run: |
 
           echo "更改为配置目录: $CONFIG..."
           cd "$CONFIG/common"
-          echo 'LZ4算法升级 && 添加三星SSG IO调度器'
-          # 删除LZ4库旧有文件
-          # 重新输入文件数组，确保没有隐藏字符
+          echo '添加三星SSG IO调度器 && LZ4算法升级'
+          # 删除旧有文件
           files=(
+              "block/Kconfig.iosched"
+              "block/Makefile"
+              "block/elevator.c"
               "lib/lz4/lz4_compress.c"
               "lib/lz4/lz4_decompress.c"
               "lib/lz4/lz4defs.h"
               "lib/lz4/lz4hc_compress.c"
-              "block/Kconfig.iosched"
-              "block/Makefile"
-              "block/elevator.c"
           )
 
           for file in "${files[@]}"; do
@@ -421,9 +420,6 @@ jobs:
               fi
           done
 
-          cp -r ../../zzh_patch/zram/lz4/* ./lib/lz4/
-          cp -r ../../zzh_patch/zram/include/linux/* ./include/linux/
-          cp -r ../../zzh_patch/zram/${{ inputs.kernel_version }}/lz4_1.10.0.patch ./
           cp -r ../../ssg_patch/SSG/Kconfig.iosched ./block/
           cp -r ../../ssg_patch/SSG/Makefile.txt ./block/Makefile
           cp -r ../../ssg_patch/SSG/elevator.c ./block/
@@ -432,8 +428,15 @@ jobs:
           cp -r ../../ssg_patch/SSG/ssg-iosched.c ./block/
           cp -r ../../ssg_patch/SSG/ssg-stat.c ./block/
           cp -r ../../ssg_patch/SSG/ssg.h ./block/
+          cp -r ../../zzh_patch/zram/lz4/* ./lib/lz4/
+          cp -r ../../zzh_patch/zram/include/linux/* ./include/linux/
+          cp -r ../../zzh_patch/zram/${{ inputs.kernel_version }}/lz4_1.10.0.patch ./
           patch -p1 -F 3 --fuzz=5 < lz4_1.10.0.patch || true
 
+          echo "启用三星SSG I/O调度器"
+          echo "CONFIG_MQ_IOSCHED_SSG=y" >> ./arch/arm64/configs/gki_defconfig
+          echo "CONFIG_MQ_IOSCHED_SSG_CGROUP=y" >> ./arch/arm64/configs/gki_defconfig
+          
           # 检查文件是否存在
           if [ -f "fs/f2fs/Makefile" ]; then
               # 检查是否包含指定行
@@ -446,10 +449,6 @@ jobs:
           else
               echo "文件不存在: fs/f2fs/Makefile"
           fi
-
-          echo "启用三星SSG I/O调度器"
-          echo "CONFIG_MQ_IOSCHED_SSG=y" >> ./arch/arm64/configs/gki_defconfig
-          echo "CONFIG_MQ_IOSCHED_SSG_CGROUP=y" >> ./arch/arm64/configs/gki_defconfig
           
       - name: 复制源文件 & 应用LZ4KD & ZSTDN补丁
         if: ${{ inputs.more_zram_kpm }}
