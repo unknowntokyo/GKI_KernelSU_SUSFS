@@ -32,11 +32,6 @@ on:
         required: true
         type: boolean
         default: true
-      set_defbbr:
-        description: 'TCP拥塞算法:BBR'
-        required: true
-        type: boolean
-        default: true
       rekernel_enable:
         description: 'Re:Kernel支持'
         required: true
@@ -79,7 +74,6 @@ jobs:
       version: ${{ inputs.version }}
       ssg_lz4_upd: ${{ inputs.ssg_lz4_upd }}
       BBG: ${{ inputs.BBG }}
-      set_defbbr: ${{ inputs.set_defbbr }}
       rekernel_enable: ${{ inputs.rekernel_enable }}
       build_time: ${{ inputs.build_time }}
       use_O3: ${{ inputs.use_O3 }}
