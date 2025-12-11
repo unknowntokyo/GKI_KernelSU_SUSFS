@@ -32,13 +32,16 @@ on:
         required: false
         type: string
       version:
-        required: false
+        required: true
         type: string
-      ssg_lz4_upd:
+      build_time:
+        required: true
+        type: string
+      lz4_upd:
         required: true
         type: boolean
         default: true
-      BBG:
+      ssg_io:
         required: true
         type: boolean
         default: true
@@ -46,13 +49,14 @@ on:
         required: true
         type: boolean
         default: true
-      build_time:
-        required: true
-        type: string
       use_O3:
         required: true
         type: boolean
         default: true
+      BBG:
+        required: false
+        type: boolean
+        default: false
       more_zram_kpm:
         required: false
         type: boolean
@@ -387,8 +391,8 @@ jobs:
             echo "Applying hooks for SukiSU..."
           fi
           
-      - name: 添加三星SSG I/O调度器 && 升级LZ4算法至1.10.0
-        if: ${{ inputs.ssg_lz4_upd }}
+      - name: 升级LZ4算法至1.10.0 && 添加三星SSG I/O调度器
+        if: ${{ inputs.lz4_upd && inputs.ssg_io }}
         run: |
 
           echo "更改为配置目录: $CONFIG..."
