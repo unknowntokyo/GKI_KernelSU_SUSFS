@@ -444,7 +444,6 @@ jobs:
           fi
 
       - name: 添加PIXIE TCP拥塞算法
-        if: ${{ inputs.lz4_upd && inputs.ssg_io }}
         run: |
 
           echo "更改为配置目录: $CONFIG..."
