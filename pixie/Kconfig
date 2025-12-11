@@ -425,6 +425,12 @@ config TCP_CONG_CUBIC
 	  This is version 2.0 of BIC-TCP which uses a cubic growth function
 	  among other techniques.
 	  See http://www.csc.ncsu.edu/faculty/rhee/export/bitcp/cubic-paper.pdf
+config TCP_CONG_PIXIE
+	tristate "PIXIE TCP"
+	default n
+	help
+	  PIXIE TCP congestion control algorithm.
+      See https://github.com/marywangran/pixie
 config TCP_CONG_WESTWOOD
 	tristate "TCP Westwood+"
 	default m
@@ -614,11 +620,6 @@ config TCP_CONG_CUBIC
 	tristate
 	depends on !TCP_CONG_ADVANCED
 	default y
-config TCP_CONG_PIXIE
-	tristate "PIXIE TCP"
-	default n
-	help
-	  PIXIE TCP congestion control algorithm.
 config DEFAULT_TCP_CONG
 	string
 	default "bic" if DEFAULT_BIC
