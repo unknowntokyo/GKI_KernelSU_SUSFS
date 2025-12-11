@@ -41,7 +41,7 @@ on:
         required: true
         type: boolean
         default: true
-      ssg_upd:
+      ssg_io:
         description: "三星SSG I/O调度器"
         required: true
         type: boolean
@@ -77,7 +77,8 @@ jobs:
       kernelsu_branch: ${{ inputs.kernelsu_branch }}
       version: ${{ inputs.version }}
       build_time: ${{ inputs.build_time }}
-      ssg_lz4_upd: ${{ inputs.ssg_lz4_upd }}
+      lz4_upd: ${{ inputs.lz4_upd }}
+      ssg_io: ${{ inputs.ssg_io }}
       rekernel_enable: ${{ inputs.rekernel_enable }}
       use_O3: ${{ inputs.use_O3 }}
       BBG: ${{ inputs.BBG }}
