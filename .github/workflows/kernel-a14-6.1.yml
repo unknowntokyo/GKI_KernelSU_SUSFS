@@ -43,8 +43,8 @@ on:
         required: true
         type: boolean
         default: true
-      use_O3:
-        description: 'O3编译优化'
+      kpm_enable:
+        description: 'KPM功能'
         required: true
         type: boolean
         default: true
@@ -53,8 +53,8 @@ on:
         required: true
         type: boolean
         default: true
-      more_zram_kpm:
-        description: '更多ZRAM算法 && KPM功能'
+      more_zram:
+        description: '更多zRAM内存压缩算法'
         required: false
         type: boolean
         default: false
@@ -82,6 +82,6 @@ jobs:
       lz4_upd: ${{ inputs.lz4_upd }}
       ssg_io: ${{ inputs.ssg_io }}
       rekernel_enable: ${{ inputs.rekernel_enable }}
-      use_O3: ${{ inputs.use_O3 }}
+      kpm_enable: ${{ inputs.kpm_enable }}
       BBG: ${{ inputs.BBG }}
-      more_zram_kpm: ${{ inputs.more_zram_kpm }}
+      more_zram: ${{ inputs.more_zram_kpm }}
