@@ -572,7 +572,7 @@ jobs:
             echo "CONFIG_ZRAM_WRITEBACK=n" >> "$CONFIG_FILE"
           fi
            
-      - name: 添加SUSFS配置设置
+      - name: SUSFS配置设置 && 添加KPM支持
         run: |
           echo "更改为配置目录: $CONFIG..."
           cd "$CONFIG"
