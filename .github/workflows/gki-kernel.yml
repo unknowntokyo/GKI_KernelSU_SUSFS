@@ -276,7 +276,7 @@ jobs:
           
           echo "Baseband-guard 配置完成"
           
-      - name: 为 KernelSU 变体安装 SUSFS 补丁
+      - name: 为 KernelSU 变体安装 SuSFS 补丁
         run: |
           echo "更改为配置目录: $CONFIG..."
           cd "$CONFIG"
@@ -572,7 +572,7 @@ jobs:
             echo "CONFIG_ZRAM_WRITEBACK=n" >> "$CONFIG_FILE"
           fi
            
-      - name: SUSFS配置设置 && 添加KPM支持
+      - name: SuSFS配置设置 && 添加KPM支持
         run: |
           echo "更改为配置目录: $CONFIG..."
           cd "$CONFIG"
