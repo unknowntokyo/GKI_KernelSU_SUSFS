@@ -49,14 +49,14 @@ on:
         required: true
         type: boolean
         default: true
-      kpm_enable:
-        required: true
-        type: boolean
-        default: true
       BBG:
         required: true
         type: boolean
         default: true
+      kpm_enable:
+        required: false
+        type: boolean
+        default: false
       more_zram:
         required: false
         type: boolean
