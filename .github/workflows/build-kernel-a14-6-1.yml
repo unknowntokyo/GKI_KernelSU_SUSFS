@@ -51,16 +51,16 @@ on:
         required: true
         type: boolean
         default: true
-      kpm_enable:
-        description: "KPM支持"
-        required: true
-        type: boolean
-        default: true
       BBG:
         description: "BBG防格机补丁"
         required: true
         type: boolean
         default: true
+      kpm_enable:
+        description: "KPM支持"
+        required: false
+        type: boolean
+        default: false
       more_zram:
         description: "更多zRAM内存压缩算法"
         required: false
@@ -80,6 +80,6 @@ jobs:
       lz4_upd: ${{ inputs.lz4_upd }}
       ssg_io: ${{ inputs.ssg_io }}
       rekernel_enable: ${{ inputs.rekernel_enable }}
-      kpm_enable: ${{ inputs.kpm_enable }}
       BBG: ${{ inputs.BBG }}
+      kpm_enable: ${{ inputs.kpm_enable }}
       more_zram: ${{ inputs.more_zram }}
