@@ -98,9 +98,22 @@ jobs:
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
           sudo ./llvm.sh 21
+          sudo apt-get update
 
-      - name: Set Clang 21 as default
+      - name: Remove old Clang versions
         run: |
+          # Remove specific old versions if present (example: 18)
+          sudo apt remove --yes --autoremove clang-18 clang-18-doc clang-format-18 clang-tidy-18 || true
+          # Optionally remove the unversioned meta-package if it points to an older series
+          sudo apt remove --yes --autoremove clang || true
+
+      - name: Reset alternatives to Clang 21
+        run: |
+          # Clean any old alternatives (clang-18, etc.)
+          sudo update-alternatives --remove-all clang || true
+          sudo update-alternatives --remove-all clang++ || true
+
+          # Register only Clang 21
           sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-21 100
           sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-21 100
           sudo update-alternatives --set clang /usr/bin/clang-21
