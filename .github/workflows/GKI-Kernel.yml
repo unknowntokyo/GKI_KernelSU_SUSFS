@@ -4,7 +4,7 @@ permissions:
   actions: write
 
 on:
-  workflow_call
+  workflow_call:
     inputs:
       make_release:
         required: true
