@@ -28,6 +28,9 @@ on:
       kernelsu_branch:
         required: true
         type: string
+      sukisu_branch:
+        required: true
+        type: string
       revision:
         required: false
         type: string
@@ -54,10 +57,6 @@ on:
         type: boolean
         default: false
       kpm_enable:
-        required: false
-        type: boolean
-        default: false
-      more_zram:
         required: false
         type: boolean
         default: false
