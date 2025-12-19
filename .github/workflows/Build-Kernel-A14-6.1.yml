@@ -78,7 +78,7 @@ jobs:
       make_release: false
       kernelsu_variant: ${{ inputs.kernelsu_variant }}
       kernelsu_branch: ${{ inputs.kernelsu_branch }}
-      sukisu_branch: ${{ inputs.sukisu_branch }}  
+      sukisu_branch: ${{ inputs.sukisu_branch }}
       version: ${{ inputs.version }}
       build_time: ${{ inputs.build_time }}
       lz4_upd: ${{ inputs.lz4_upd }}
